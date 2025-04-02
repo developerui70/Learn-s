@@ -1,0 +1,226 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montez", serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  position: relative;
+  background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.order1 {
+  order: 1;
+}
+
+.order2 {
+  order: 2;
+}
+
+.order3 {
+  order: 3;
+}
+
+.btn {
+  display: inline-block;
+  padding-block: 0.3125rem 0.75rem;
+  background-color: transparent;
+  color: #000;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.btn:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 1rem;
+  padding: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.navbar.bg-dark {
+  background-color: #000;
+}
+.navbar .c-container {
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .navbar-brand {
+  padding-block: 0.3125rem;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.navbar .navbar-nav {
+  display: flex;
+  flex-basis: 100%;
+  flex-grow: 1;
+  line-height: 0;
+  gap: 30px;
+  transition: color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.navbar .navbar-nav .navbar-item .navbar-link {
+  letter-spacing: 2px;
+  padding-bottom: 5px;
+  transition: border 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  font-size: 24px;
+}
+.navbar .navbar-nav .navbar-item .navbar-link:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  border-bottom: 2px solid #fff;
+  width: 0;
+  bottom: 0;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.navbar .navbar-nav .navbar-item .navbar-link:hover::after {
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.navbar .navbar-nav:hover .navbar-item .navbar-link:not(:hover) {
+  color: #797979 !important;
+  transition: color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.navbar .navbar-right {
+  display: flex;
+  gap: 70px;
+  align-items: center;
+}
+.navbar .navbar-social .navbar-nav {
+  gap: 15px;
+}
+.navbar .sidebar {
+  background: rgba(0, 0, 0, 0.5294117647);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  height: 100%;
+  position: fixed;
+  inset: 0;
+  max-width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-250px);
+  transition: all 0.5s ease-in-out;
+}
+.navbar .sidebar .close {
+  text-align: right;
+  cursor: pointer;
+}
+.navbar .sidebar .navbar-list {
+  margin-left: 10px;
+  margin-top: 80px;
+}
+.navbar .sidebar .navbar-nav {
+  line-height: normal;
+  flex-direction: column;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.navbar .sidebar .navbar-social .navbar-nav {
+  flex-direction: row;
+}
+.navbar .sidebar.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0px);
+  transition: all 0.5s ease-in-out;
+}
+.navbar .mobile-navbar {
+  cursor: pointer;
+  display: none;
+}
+@media (width <= 800px) {
+  .navbar .mobile-navbar {
+    display: block;
+  }
+}
+
+@media (width <= 800px) {
+  .navbar-list,
+  .navbar-social {
+    display: none;
+  }
+  .sidebar .navbar-list,
+  .sidebar .navbar-social {
+    display: block;
+  }
+}/*# sourceMappingURL=style.css.map */

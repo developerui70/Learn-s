@@ -1,0 +1,206 @@
+<!Doctype html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= device-width, initial-scale= 1.0">
+    <title>Navbar 1</title>
+    <link rel="stylesheet" href="Navbar1/style.css">
+</head>
+
+<body>
+    <nav class="navbar bg-dark">
+        <div class="c-container">
+            <a href="#" class="navbar-brand">LOgo Bakery</a>
+            <div class="navbar-list">
+                <ul class="navbar-nav">
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">services</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">Projects</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">About</a>
+                    </li>
+                    <li class="btn navbar-btn">
+                        <a href="#" class="navbar-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+
+    <nav class="navbar bg-dark">
+        <div class="c-container justify-content-between">
+            <a href="#" class="navbar-brand">LOgo Bakery</a>
+            <div class="navbar-list">
+                <ul class="navbar-nav">
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">services</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">Projects</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">About</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="navbar-nav basis-none grow-none">
+                <li class="btn navbar-btn">
+                    <a href="#" class="navbar-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+
+    <nav class="navbar bg-dark">
+        <div class="c-container">
+            <a href="#" class="navbar-brand order-2">LOgo Bakery</a>
+            <div class="navbar-list order-1">
+                <ul class="navbar-nav">
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">services</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">Projects</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">About</a>
+                    </li>
+                    <li class="btn navbar-btn">
+                        <a href="#" class="navbar-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <!-- Responsive Navbars -->
+
+    <nav class="navbar bg-dark">
+        <div class="c-container">
+            <a href="#" class="navbar-brand">LOgo Bakery</a>
+            <div class="navbar-list">
+                <ul class="navbar-nav side-bar">
+                    <li class="navbar-item" onclick="toggleSidebar()">
+                        <a href="#" class="navbar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#fff">
+                                <path
+                                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">services</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">Projects</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link">About</a>
+                    </li>
+                </ul>
+                <div id="bg-overflow" onclick="closeSidebar()"></div>
+                <ul class="navbar-nav">
+                    <li class="navbar-item hideOnMobile">
+                        <a href="#" class="navbar-link">services</a>
+                    </li>
+                    <li class="navbar-item hideOnMobile">
+                        <a href="#" class="navbar-link">Projects</a>
+                    </li>
+                    <li class="navbar-item hideOnMobile">
+                        <a href="#" class="navbar-link">About</a>
+                    </li>
+                    <li class="btn navbar-btn hideOnMobile">
+                        <a href="#" class="navbar-link">Contact</a>
+                    </li>
+                    <li onclick="toggleSidebar()" class="navbar-item hamburger-icon" style="line-height: 0;">
+                        <a href="#" class="navbar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#fff">
+                                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector(".side-bar");
+            const body = document.body;
+
+            // sidebar.classList.toggle('show');
+
+            if (sidebar.classList.contains('show')) {
+                sidebar.classList.remove('show')
+                body.classList.remove('no-scroll');
+            }
+            else {
+                sidebar.classList.add('show');
+                body.classList.add('no-scroll');
+            }
+
+            window.addEventListener("resize", () => {
+                if (window.innerWidth >= 800) {
+                    sidebar.classList.remove('show');
+                    body.classList.remove('no-scroll')
+                }
+            });
+
+        }
+
+        function closeSidebar() {
+            const sidebar = document.querySelector('.side-bar');
+            const body = document.body;
+
+            sidebar.classList.remove('show');
+            body.classList.remove('no-scroll'); // no scroll when scroll in sidebar
+        }
+
+        // Close sidebar with Escape key, block developer tools and right-click menu
+        window.addEventListener("keydown", (event) => {
+            if (event.key === 'Escape') {
+                closeSidebar();  // Close the sidebar when Escape is pressed
+            }
+            if ((event.key === 'F12')
+                || (event.ctrlKey && event.shiftKey && event.key === 'I')
+                || (event.ctrlKey && event.shiftKey && event.key === 'J')
+                || (event.ctrlKey && event.key === 'U')
+                || (event.ctrlKey && event.key === 'u')
+                || (event.ctrlKey && event.key === 's')
+                || (event.ctrlKey && event.key === 'S')
+            ) {
+                event.preventDefault();  // Prevent DevTools from opening
+            }
+        });
+
+        window.addEventListener("contextmenu", (event) => {
+            event.preventDefault();  // Prevent right-click context menu
+        });
+
+
+        // function showSidebar() {
+        //     const sidebar = document.querySelector('.side-bar');
+        //     sidebar.classList.add('show');
+        // }
+
+        // function hideSidebar() {
+        //     const sidebar = document.querySelector('.side-bar');
+        //     sidebar.classList.remove('show');
+        // }
+    </script>
+</body>
+
+</html>
