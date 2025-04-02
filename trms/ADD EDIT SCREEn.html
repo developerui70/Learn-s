@@ -1,0 +1,744 @@
+HTML
+
+
+
+<div class="main-all-parts-design fulltyped mt-5">
+
+    <div class="card add-staff-here-update-cls">
+
+        <div class="card-header pb-0 pt-3">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h4 class="card-title mg-b-0 not-mb">Standard & Category Wise Fee Mapping</h4>
+
+            </div>
+
+            <div class="block-mapping mt-3">
+
+                <div class="row" [formGroup]="form">
+
+                    <div class="col-lg-4 col-md-6 col-12">
+
+                        <div class="form-group selection-label-reverse">
+
+                            <label>Medium <span class="required-asterisk">*</span></label>
+
+                            <ng-select [multiple]="true" formControlName="medium" [clearable]="true"
+
+                                [closeOnSelect]="false">
+
+                                <ng-template ng-header-tmp>
+
+                                    <div>
+
+                                        <button class="btn btn-link" type="button">
+
+                                            Select All
+
+                                        </button>
+
+                                        <button class="btn btn-link" type="button">
+
+                                            Clear All
+
+                                        </button>
+
+                                    </div>
+
+                                </ng-template>
+
+                                <ng-option [value]="Data.name" *ngFor="let Data of dataList">
+
+                                    {{ Data.name }}
+
+                                </ng-option>
+
+                            </ng-select>
+
+
+
+                            <div *ngIf="(isSubmitted || form.controls['medium'].touched) && form.controls['medium'].errors?.['required'] "
+
+                                class="text-danger">
+
+                                Please select medium
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+
+                        <div class="form-group selection-label-reverse">
+
+                            <label>Standard <span class="required-asterisk">*</span></label>
+
+                            <ng-select [multiple]="true" formControlName="standard" [clearable]="true"
+
+                                [closeOnSelect]="false">
+
+                                <ng-template ng-header-tmp>
+
+                                    <div>
+
+                                        <button class="btn btn-link" type="button">
+
+                                            Select All
+
+                                        </button>
+
+                                        <button class="btn btn-link" type="button">
+
+                                            Clear All
+
+                                        </button>
+
+                                    </div>
+
+                                </ng-template>
+
+                                <ng-option [value]="Data.id" *ngFor="let Data of dataList">
+
+                                    {{ Data.name }}
+
+                                </ng-option>
+
+                            </ng-select>
+
+                            <div class="text-danger"
+
+                                *ngIf="(isSubmitted || form.controls['standard'].touched) && form.controls['standard'].errors?.['required']">
+
+                                Please select standard
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+
+                        <div class="form-group selection-label-reverse">
+
+                            <label>Select Fee Category <span class="required-asterisk">*</span></label>
+
+                            <ng-select [multiple]="true" [clearable]="true" formControlName="fee_category"
+
+                                [closeOnSelect]="false">
+
+                                <ng-template ng-header-tmp>
+
+                                    <div>
+
+                                        <button class="btn btn-link" type="button">
+
+                                            Select All
+
+                                        </button>
+
+                                        <button class="btn btn-link" type="button">
+
+                                            Clear All
+
+                                        </button>
+
+                                    </div>
+
+                                </ng-template>
+
+                                <ng-option [value]="Data.id" *ngFor="let Data of dataList">
+
+                                    {{ Data.name }}
+
+                                </ng-option>
+
+                            </ng-select>
+
+                            <div class="text-danger"
+
+                                *ngIf="(isSubmitted || form.controls['fee_category'].touched) && form.controls['fee_category'].errors?.['required']">
+
+                                Please select fee category
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+
+                        <div class="form-group selection-label-reverse">
+
+                            <div class="form-group same-for-one-a-all">
+
+                                <input type="text" placeholder="Performing Activity" class="form-control"
+
+                                    formControlName="amount">
+
+                                <label>Add Amount</label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+
+                        <div class="same-for-one-z main-permission-role-design-cls-form-check pb-3">
+
+                            <div class="form-check my-2">
+
+                                <div class="d-flex align-items-center justify-content-start justify-content-lg-center">
+
+                                    <input type="checkbox" id="isSearch" formcontrolname="selectAllStudent"
+
+                                        class="form-check-input my-0">
+
+                                    <label for="isSearch" class="form-check-label ms-3">Admission Fees</label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+
+                        <div class="form-group selection-label-reverse">
+
+                            <div class="form-group same-for-one-a-all">
+
+                                <input type="text" placeholder="Performing Activity" class="form-control">
+
+                                <label>Add Admission Fees</label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-header pb-0 pt-3 ms-3">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h4 class="card-title mg-b-0 not-mb">Total Fees</h4>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+
+
+            <div class="table-responsive" *ngIf="feeList.length > 0">
+
+                <table summary="table" class="table mg-b-0 text-md-nowrap table-striped table-hover">
+
+                    <thead>
+
+                        <tr>
+
+                            <th scope="col">
+
+                                Fee Group
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <span class="arrow-up"></span>
+
+                                    <span class="arrow-down"></span>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Fee Head
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <span class="arrow-up"></span>
+
+                                    <span class="arrow-down"></span>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Amount
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Installment 1
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Installment 2
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let y of [{},{},{},{},{}]; let i = index;">
+
+                            <td class="table_width3">
+
+                                Fee
+
+                            </td>
+
+                            <td class="table_width3">
+
+                                Term Fee
+
+                            </td>
+
+                            <td class="table_width3">
+
+                                <div class="form-group selection-label-reverse mb-0">
+
+                                    <div class="">
+
+                                        <input type="text" placeholder="Performing Activity" class="form-control"
+
+                                            formControlName="amount">
+
+                                        <label>Amount</label>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td class="table_width3">
+
+                                <div class="form-group selection-label-reverse mb-0 ">
+
+                                    <div class="">
+
+                                        <input type="text" placeholder="Performing Activity" class="form-control"
+
+                                            formControlName="amount">
+
+                                        <label>Installment</label>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td class="table_width3">
+
+                                <div class="form-group selection-label-reverse mb-0 ">
+
+                                    <div class="">
+
+                                        <input type="text" placeholder="Performing Activity" class="form-control"
+
+                                            formControlName="amount">
+
+                                        <label>Installment</label>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td class="table_width3"></td>
+
+                            <td class="table_width3"> Total </td>
+
+                            <td class="table_width3">10000</td>
+
+                            <td class="table_width3">10000</td>
+
+                            <td class="table_width3">10000</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="subject-inner-card p-5 text-center" *ngIf="feeList.length === 0">
+
+                <h4>No Data Found</h4>
+
+            </div>
+
+
+
+            <div class="card-header pb-3 pt-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <h4 class="card-title mg-b-0 not-mb">Installments</h4>
+
+                </div>
+
+            </div>
+
+            <div class="table-responsive" *ngIf="installList.length > 0">
+
+                <table summary="table" class="table mg-b-0 text-md-nowrap table-striped table-hover">
+
+                    <thead>
+
+                        <tr>
+
+                            <th scope="col">
+
+                                Installment
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <span class="arrow-up"></span>
+
+                                    <span class="arrow-down"></span>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Amount
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <span class="arrow-up"></span>
+
+                                    <span class="arrow-down"></span>
+
+                                </div>
+
+                            </th>
+
+                           
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let y of [{},{},{},{},{}]; let i = index;">
+
+                            <td *ngFor="let x of installList" class="table_width3">
+
+                                {{x.name}}
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td class="table_width3"> Total </td>
+
+                            <td class="table_width3">60000</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="subject-inner-card p-5 text-center" *ngIf="installList.length === 0">
+
+                <h4>No Data Found</h4>
+
+            </div>
+
+
+
+            <div class="row spacing-subject-pans">
+
+                <div class="col-lg-12 col-md-12 col-12">
+
+                    <div class="d-flex justify-content-center flex-wrap">
+
+                        <button type="submit" class="btn btn-primary spacing-left spacing-down-side">
+
+                            <span class="add-ics-cls-proper-adding">Submit</span>
+
+                        </button>
+
+                        <button class="btn btn-danger btn-outline spacing-left spacing-down-side">
+
+                            <span class="add-ics-cls-proper-adding">Cancel</span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+TS
+
+
+
+import { Component, OnInit } from '@angular/core';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Router } from '@angular/router';
+
+
+
+@Component({
+
+  selector: 'app-add-edit-standard-category-wise-fee-mapping',
+
+  templateUrl: './add-edit-standard-category-wise-fee-mapping.component.html',
+
+  styleUrls: ['./add-edit-standard-category-wise-fee-mapping.component.scss']
+
+})
+
+export class AddEditStandardCategoryWiseFeeMappingComponent implements OnInit {
+
+  dataList: any = [];
+
+  form : FormGroup;
+
+  searchString = '';
+
+  installList: any= [];
+
+  feeList: any = [];
+
+  constructor(private router: Router,
+
+    private fb : FormBuilder,
+
+  ) {
+
+    this.dataList = [
+
+      {
+
+        name: 'English Medium',
+
+      },
+
+      {
+
+        name: 'Std 1',
+
+      },
+
+      {
+
+        name: 'Regular Student',
+
+      },
+
+      {
+
+        name: 'Fee',
+
+      },
+
+      {
+
+        name: 'Term Fee School',
+
+      },
+
+      {
+
+        name: '11000',
+
+      },
+
+      {
+
+        name: '20000',
+
+      },
+
+      {
+
+        name: '40000',
+
+      },
+
+    ];
+
+    this.feeList = [
+
+      {
+
+        fee_name: 'Fee',
+
+      },
+
+      {
+
+        term_name: 'Term Fee',
+
+      },
+
+      {
+
+        school_name: 'School Fee',
+
+      },
+
+      {
+
+        amount_name: 'Amount',
+
+      },
+
+      {
+
+        install_name: 'Installment 1',
+
+      },
+
+      {
+
+        total_name: 'Total',
+
+      },
+
+    ];
+
+    this.installList = [
+
+      {
+
+        name: 'Installment',
+
+      },
+
+      {
+
+        name: 'Amount',
+
+      },
+
+     
+
+    ];
+
+  }
+
+
+
+  ngOnInit(): void {
+
+    this.form = this.fb.group({
+
+      medium : [ null , Validators.required],
+
+      standard : [null,  Validators.required],
+
+      fee_category : [ ,Validators.required],
+
+      amount : [],
+
+    })
+
+  }
+
+
+
+  isSubmitted : boolean = false;
+
+  goTo(path: string) {
+
+    this.router.navigate([path]);
+
+  }
+
+}
+

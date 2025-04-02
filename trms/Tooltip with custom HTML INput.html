@@ -1,0 +1,47 @@
+HTML
+
+
+
+<td class="table_width4">
+
+                                        <div class="fee-block d-flex align-items-center justify-content-between">
+
+                                            <div>
+
+                                                Term Fee
+
+                                            </div>
+
+                                            <div class="font-info">
+
+                                                <span class="" style="color: var(--primary-bg-color);"
+
+                                                    [ngbTooltip]="tooltipTemplate">
+
+                                                    <i class="fa fa-info-circle"></i>
+
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                        <ng-template #tooltipTemplate>
+
+                                            <div>Term Fees: {{i * 1000}}</div>
+
+                                            <div>School Fees: {{i * 1000}}</div>
+
+                                        </ng-template>
+
+                                    </td>
+
+
+
+TS
+
+
+
+// For Tooltip COntent
+
+  @ViewChild('tooltipTemplate', { static: true }) tooltipTemplate!: TemplateRef<any>; 

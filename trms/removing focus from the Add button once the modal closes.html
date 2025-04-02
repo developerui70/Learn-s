@@ -1,0 +1,68 @@
+HTML
+
+
+
+<div class="d-flex">
+  <div class="add-reporting" *ngIf="userRole != userRoleType.organization">
+    <button #addButton class="btn btn-primary spacing-left" (click)="onModalOpen()">
+      <span class="add-ics-cls-proper-adding"><i class="fas fa-plus"></i></span>Add
+    </button>
+  </div>
+  <div class="export-btn export-btn-cls-add">
+    <select #exportAll (change)="export(exportAll.value, $event)">
+      <option value="" selected disabled hidden>Export</option>
+      <option value="pdf">Export to PDF</option>
+      <option value="excel">Export to Excel</option>
+      <option value="csv">Export to CSV</option>
+    </select>
+  </div>
+</div>
+
+
+
+TS
+
+
+
+import { Component, ViewChild, ElementRef } from '@angular/core';
+
+
+
+@Component({
+  selector: 'app-your-component',
+  templateUrl: './your-component.component.html',
+  styleUrls: ['./your-component.component.css']
+})
+export class YourComponent {
+  @ViewChild('addButton') addButton!: ElementRef<HTMLButtonElement>;
+
+
+
+  onModalOpen() {
+    // Open the modal
+    // Example: this.modalService.open(modalId);
+    
+    // Logic for closing the modal can trigger blur
+    this.closeModal();
+  }
+
+
+
+  closeModal() {
+    // Simulate modal close event (replace with actual modal close logic)
+    setTimeout(() => {
+      // Once the modal closes, remove focus from the button
+      this.removeFocusFromButton();
+    }, 1000); // Adjust this timing based on how long your modal remains open
+  }
+
+
+
+  removeFocusFromButton() {
+    if (this.addButton) {
+      this.addButton.nativeElement.blur(); // Removes focus from the button
+    }
+  }
+}
+ 
+

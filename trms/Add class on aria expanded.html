@@ -1,0 +1,47 @@
+HTML : 
+
+<div class="dropdown-first">
+                    <span class="position-relative" (click)="toggleExpand()" [attr.aria-expanded]="isExpanded"
+                        [class.expanded]="isExpanded">
+                        <i class="fa fa-ellipsis-v cursor"></i>
+                    </span>
+                    <ul class="dropdown-menu dropdown-menu-end cursor" *ngIf="isExpanded && checkedSubscription.length"
+                        class="content">
+                        <li>
+                            <a class="dropdown-item">Update All Cards</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item">Update Card</a>
+                        </li>
+                        <li (click)="openCancelSubscriptionModal(cancelSubscriptionModal)">
+                            <a class="dropdown-item">Cancel Subscription</a>
+                        </li>
+                    </ul>
+                    <ul class="dropdown-menu dropdown-menu-end cursor" *ngIf="isExpanded && !checkedSubscription.length"
+                        class="content">
+                        <li>
+                            <a class="dropdown-item">No subscriptions selected</a>
+                        </li>
+
+
+
+                    </ul>
+                </div>
+
+
+
+TS :
+
+
+
+isExpanded: boolean = false;
+
+
+
+  toggleExpand() {
+
+    this.isExpanded = !this.isExpanded;
+
+  }
+
+ 

@@ -1,0 +1,82 @@
+HTML
+
+
+
+<div [ngClass]="{
+      'mobile-class': isMobile,
+      'tablet-class': isTablet,
+      'desktop-class': isDesktop,
+      'large-screen-class': isLargeScreen
+    }">
+  <!-- Your content here -->
+</div>
+
+ 
+
+CSS
+
+
+
+/* styles.scss */
+.mobile-class {
+  background-color: lightblue;
+}
+
+
+
+.desktop-class {
+  background-color: lightgreen;
+}
+
+
+
+@media (max-width: 768px) {
+  .mobile-class {
+    background-color: lightcoral;
+  }
+}
+ 
+
+TS
+
+
+
+import { Component, HostListener, OnInit } from '@angular/core';
+
+
+
+@Component({
+  selector: 'app-your-component',
+  templateUrl: './your-component.component.html',
+  styleUrls: ['./your-component.component.scss']
+})
+export class YourComponent implements OnInit {
+  isMobile: boolean = false;
+  isTablet: boolean = false;
+  isDesktop: boolean = false;
+  isLargeScreen: boolean = false;
+
+
+
+  ngOnInit() {
+    this.checkScreenSize();
+  }
+
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkScreenSize();
+  }
+
+
+
+  checkScreenSize() {
+    const width = window.innerWidth;
+    this.isMobile = width <= 576; // Mobile (small devices)
+    this.isTablet = width > 576 && width <= 992; // Tablet (medium devices)
+    this.isDesktop = width > 992 && width <= 1200; // Desktop (large devices)
+    this.isLargeScreen = width > 1200; // Large Screen (extra large devices)
+  }
+}
+ 

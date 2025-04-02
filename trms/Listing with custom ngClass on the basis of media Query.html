@@ -1,0 +1,659 @@
+HTML
+
+
+
+<div class="app-common-card">
+
+    <div class="main-all-parts-design fulltyped">
+
+        <div class="card-header ch_edit_custom_padding">
+
+            <div class="d-flex justify-content-between align-items-center blocking-responsive-z custom-flex-box-block">
+
+                <h4 class="card-title mg-b-0 ms-2  not-mb">Fee Receipt Configuration</h4>
+
+            </div>
+
+            <div class="details-view-all mt-3">
+
+                <div class="row mx-0 ">
+
+                    <div class="col-xl-3 col-lg-6 col-md-12 col-12 p-0">
+
+                        <div class="form-group selection-label-reverse">
+
+                            <label>Fee Category <span class="required-asterisk">*</span></label>
+
+                            <ng-select [multiple]="true" formControlName="medium" [clearable]="true"
+
+                                [closeOnSelect]="false">
+
+                                <ng-template ng-header-tmp>
+
+                                    <div>
+
+                                        <button class="btn btn-link" type="button">
+
+                                            Select All
+
+                                        </button>
+
+                                        <button class="btn btn-link" type="button">
+
+                                            Clear All
+
+                                        </button>
+
+                                    </div>
+
+                                </ng-template>
+
+                                <ng-option [value]="Data.name" *ngFor="let Data of dataList">
+
+                                    {{ Data.name }}
+
+                                </ng-option>
+
+                            </ng-select>
+
+
+
+                            <div *ngIf="(isSubmitted || lateFee.controls['fee_category'].touched) && lateFee.controls['fee_category'].errors?.['required'] "
+
+                                class="text-danger">
+
+                                Please select Fee Category
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div
+
+                        class="offset-xl-3 col-xl-9 col-lg-12 col-md-12 col-12 d-flex align-items-md-center align-items-end justify-content-end flex-wrap  flex-column flex-md-row custom-marging px-0">
+
+                        <div class="d-flex spacing-down-side position-relative m-0 custom-wid">
+
+                            <input type="text" placeholder="Search..." appdebounce="" class="form-control me-2 ms-1">
+
+                            <div class="set-position-auto-cls-adding">
+
+                                <i class="fas fa-search"></i>
+
+                                <i class="far fa-times-circle"></i>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex flex-wrap flex-md-nowrap">
+
+                            <div class="add-reporting">
+
+                                <button class="btn btn-primary spacing-left" (click)="goTo('')">
+
+                                    <span class="add-ics-cls-proper-adding">
+
+                                        <i class="fas fa-plus"></i></span>Add
+
+                                </button>
+
+                            </div>
+
+                            <div class=" export-btn export-btn-cls-add">
+
+                                <select>
+
+                                    <option>Export </option>
+
+                                    <option value="pdf">Export to PDF</option>
+
+                                    <option value="excel">Export to Excel</option>
+
+                                    <option value="csv">Export to CSV</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body cb_edit_custom_padding">
+
+            <div class="row mx-3">
+
+                <div class="col-xl-3 col-lg-6 col-md-12 col-12 align-self-center"
+
+                    *ngFor="let x of [{},{},{},{},{},{},{},{}]; let i=index;" [ngClass]="{'extra-spacing' : isApplyClass(i)}">
+
+                    <div class="group-check-block">
+
+                        <div class="gcb_left">
+
+                            <div class="d-flex align-items-center justify-content-start">
+
+                                <input type="checkbox" id="isSearch{{i}}" formcontrolname="selectAllStudent"
+
+                                    class="form-check-input my-0">
+
+                                <label for="isSearch{{i}}" class="form-check-label ms-3 customh_new_clamp">Group Head {{i + 1}}</label>
+
+                            </div>
+
+                        </div>
+
+                        <div class="gcb_right">
+
+                            <ul>
+
+                                <li *ngFor="let y of [{},{},{},{},{}]; let j = index;">Group Name <span>{{j + 1}}</span>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row spacing-subject-pans">
+
+                <div class="col-lg-12 col-md-12 col-12">
+
+                    <div class="d-flex justify-content-center flex-wrap">
+
+                        <!-- <button type="submit" class="btn btn-primary spacing-left spacing-down-side">
+
+                                <span class="add-ics-cls-proper-adding"><i class="fas fa-plus"></i> Add</span>
+
+                            </button> -->
+
+                        <button type="submit" class="btn btn-primary spacing-left spacing-down-side"
+
+                            (click)="onSubmit()">
+
+                            <span class="add-ics-cls-proper-adding">Submit</span>
+
+                        </button>
+
+                        <!-- <button class="btn btn-danger btn-outline spacing-left spacing-down-side">
+
+                                <span class="add-ics-cls-proper-adding">Cancel</span>
+
+                            </button> -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- <div class="table-responsive" *ngIf="dataList.length > 0">
+
+                <table summary="table" class="table mg-b-0 text-md-nowrap table-striped table-hover">
+
+                    <thead>
+
+                        <tr>
+
+                            <th scope="col">
+
+                                Medium
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <span class="arrow-up"></span>
+
+                                    <span class="arrow-down"></span>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Standard
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <span class="arrow-up"></span>
+
+                                    <span class="arrow-down"></span>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                fee Category
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                fee Group
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                fee Head
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Admission Fee
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Amount
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Installment
+
+                                <div class="spacing-up-down-side-set">
+
+                                    <div class="spacing-up-down-side-set">
+
+                                        <span class="arrow-up"></span>
+
+                                        <span class="arrow-down"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </th>
+
+                            <th scope="col">
+
+                                Action
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let y of [{},{},{},{},{}]; let i = index;">
+
+                            <td *ngFor="let x of dataList" class="table_width3">
+
+                                {{x.name}}
+
+                            </td>
+
+                            <td>
+
+                                <div
+
+                                    class="d-flex align-items-center justify-content-center all-icons-edit-here-table-cls">
+
+                                    <i class="fas fa-edit icon-padding edit-pencil-cls-adding"></i>
+
+                                    <i class=" fas fa-trash"></i>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="subject-inner-card p-5 text-center" *ngIf="dataList.length === 0">
+
+                <h4>No Data Found</h4>
+
+            </div> -->
+
+        </div>
+
+    </div>
+
+    <!-- <div class="d-flex justify-content-between p-2 record-pg-cls-cum-font">
+
+        <div class="d-flex align-items-center">
+
+            <select class="records-select">
+
+                <option value="10">10</option>
+
+                <option value="25">25</option>
+
+                <option value="50">50</option>
+
+                <option value="100">100</option>
+
+                <option>All</option>
+
+            </select>
+
+            <h6 class="m-0 pe-2"> - records per page</h6>
+
+        </div>
+
+    </div> -->
+
+</div>
+
+
+
+
+
+TS
+
+
+
+import { Component,HostListener, OnInit } from '@angular/core';
+
+import { FormBuilder, Validators } from '@angular/forms';
+
+import { Router } from '@angular/router';
+
+
+
+@Component({
+
+  selector: 'app-fee-receipt-configuration',
+
+  templateUrl: './fee-receipt-configuration.component.html',
+
+  styleUrls: ['./fee-receipt-configuration.component.scss'],
+
+})
+
+export class FeeReceiptConfigurationComponent implements OnInit {
+
+  dataList: any = [];
+
+  isSubmitted: boolean;
+
+  lateFee: any;
+
+  isDesktop : boolean = false;
+
+  isTablet : boolean = false;
+
+  isMobile : boolean = false;
+
+
+
+  constructor(private router: Router, private fb: FormBuilder) {
+
+    this.dataList = [
+
+      {
+
+        name: 'English Medium',
+
+      },
+
+      {
+
+        name: 'Std 1',
+
+      },
+
+      {
+
+        name: 'Regular Student',
+
+      },
+
+      {
+
+        name: 'Fee',
+
+      },
+
+      {
+
+        name: 'Term Fee School',
+
+      },
+
+      {
+
+        name: '11000',
+
+      },
+
+      {
+
+        name: '20000',
+
+      },
+
+      {
+
+        name: '40000',
+
+      },
+
+    ];
+
+  }
+
+  ngOnInit(): void {
+
+    this.lateFee = this.fb.group({
+
+      fee_category: [null, Validators.required],
+
+    });
+
+    this.checkScreenSize();
+
+  }
+
+
+
+  @HostListener('window:resize', ['$event'])
+
+  onResize(event: Event) {
+
+    this.checkScreenSize();
+
+  }
+
+
+
+  checkScreenSize() {
+
+    const width = window.innerWidth;
+
+    this.isDesktop = width >= 1201;
+
+    this.isTablet = width >= 991 && width <= 1200;;
+
+    this.isMobile = width <= 992;
+
+  }
+
+
+
+  isApplyClass(index: number): boolean {
+
+    if (this.isDesktop) {
+
+      return index >= 4;
+
+    }
+
+    if (this.isTablet) {
+
+      return index >= 2;
+
+    }
+
+    return index >= 1;
+
+  }
+
+
+
+  onSubmit() {
+
+    this.isSubmitted = true;
+
+    console.log(this.lateFee.invalid);
+
+  }
+
+
+
+  goTo(path: string) {
+
+    this.router.navigate([path]);
+
+  }
+
+}
+
+
+
+
+
+SCSS
+
+
+
+.group-check-block {
+
+    .gcb_left {
+
+        label {
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            margin-right: 20px;
+
+        }
+
+    }
+
+
+
+    .gcb_right {
+
+        left: 0px;
+
+        margin-top: 10px;
+
+        position: relative;
+
+
+
+        li {
+
+            font-size: 14px;
+
+            line-height: 14px;
+
+            padding: 8px 5px;
+
+        }
+
+    }
+
+}
+
+.extra-spacing{
+
+    margin-top: 30px;
+
+}

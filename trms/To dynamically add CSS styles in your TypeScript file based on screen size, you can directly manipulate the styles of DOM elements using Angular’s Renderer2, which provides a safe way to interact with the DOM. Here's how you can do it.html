@@ -1,0 +1,123 @@
+TS :
+
+
+
+import { Component, HostListener, Renderer2, ElementRef } from '@angular/core';
+
+
+
+@Component({
+  selector: 'app-responsive-component',
+  templateUrl: './responsive-component.component.html',
+  styleUrls: ['./responsive-component.component.scss']
+})
+export class ResponsiveComponent {
+  isMobile: boolean;
+  isTablet: boolean;
+
+
+
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
+
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkScreenSize();
+  }
+
+
+
+  ngOnInit() {
+    this.checkScreenSize(); // Initial check when component loads
+  }
+
+
+
+  checkScreenSize() {
+    const width = window.innerWidth;
+    this.isMobile = width <= 576;
+    this.isTablet = width >= 768.1 && width <= 950;
+
+
+
+    // Apply styles based on screen size
+    if (this.isMobile) {
+      this.applyMobileStyles();
+    } else if (this.isTablet) {
+      this.applyTabletStyles();
+    } else {
+      this.removeResponsiveStyles(); // Remove any responsive styles if screen is larger
+    }
+  }
+
+
+
+  applyMobileStyles() {
+    this.renderer.setStyle(this.el.nativeElement, 'background-color', '#f8f9fa');
+    this.renderer.setStyle(this.el.nativeElement, 'font-size', '12px');
+    this.renderer.setStyle(this.el.nativeElement, 'padding', '10px');
+  }
+
+
+
+  applyTabletStyles() {
+    this.renderer.setStyle(this.el.nativeElement, 'background-color', '#e9ecef');
+    this.renderer.setStyle(this.el.nativeElement, 'font-size', '14px');
+    this.renderer.setStyle(this.el.nativeElement, 'padding', '20px');
+  }
+
+
+
+  removeResponsiveStyles() {
+    // Remove previously applied styles if not mobile or tablet
+    this.renderer.removeStyle(this.el.nativeElement, 'background-color');
+    this.renderer.removeStyle(this.el.nativeElement, 'font-size');
+    this.renderer.removeStyle(this.el.nativeElement, 'padding');
+  }
+}
+ 
+
+
+
+Alternative: Use CSS Classes
+
+If you prefer adding/removing classes dynamically instead of setting individual styles:
+
+
+
+TS
+
+
+
+applyMobileStyles() {
+  this.renderer.addClass(this.el.nativeElement, 'mobile-class');
+  this.renderer.removeClass(this.el.nativeElement, 'tablet-class');
+}
+
+
+
+applyTabletStyles() {
+  this.renderer.addClass(this.el.nativeElement, 'tablet-class');
+  this.renderer.removeClass(this.el.nativeElement, 'mobile-class');
+}
+ 
+
+CSS : 
+
+
+
+.mobile-class {
+  background-color: #f8f9fa;
+  font-size: 12px;
+  padding: 10px;
+}
+
+
+
+.tablet-class {
+  background-color: #e9ecef;
+  font-size: 14px;
+  padding: 20px;
+}
+ 

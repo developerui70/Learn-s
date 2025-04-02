@@ -1,0 +1,57 @@
+HTML
+
+
+
+<ngb-pagination [collectionSize]="totalPendingItems" [maxSize]="paginationButtonNo" [rotate]="true"
+
+            aria-label="Default pagination" [pageSize]="pagePendingLimit" [(page)]="currentPendingPage"
+
+            (pageChange)="onPageChangePending($event)">
+
+          </ngb-pagination>
+
+
+
+TS
+
+
+
+import {
+
+  ChangeDetectorRef,
+
+  Component,
+
+  OnInit,
+
+  HostListener,
+
+} from '@angular/core';
+
+paginationButtonNo = 5;
+
+@HostListener('window:resize', ['$event'])
+
+  onResize(event: any) {
+
+    console.log('resizing...');
+
+    this.checkDeviceSize();
+
+  }
+
+
+
+  checkDeviceSize() {
+
+    const viewportWidth = window.innerWidth;
+
+    this.paginationButtonNo = 5;
+
+    if (viewportWidth < 400) {
+
+      this.paginationButtonNo = 2;
+
+    }
+
+  }
