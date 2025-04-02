@@ -1,0 +1,85 @@
+// Import Google Font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+// Set base font size for easier rem calculations (1 rem = 10px)
+html {
+    font-size: 62.5%;
+}
+
+// Font Family
+$font-family-base: 'Poppins', sans-serif;
+
+// Color Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$warning-color: #ffc107;
+$danger-color: #dc3545;
+
+// Font Sizes in rem (based on 10px = 1rem)
+$font-size-base: 1.6rem;  // Equivalent to 16px
+$font-size-large: 2.4rem; // Equivalent to 24px
+$font-size-small: 1.4rem; // Equivalent to 14px
+
+// Spacing in rem
+$spacing-unit: 1rem; // Equivalent to 10px
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin transition($property, $duration: 0.3s, $timing-function: ease-in-out) {
+    transition: $property $duration $timing-function;
+}
+
+@mixin custom-icon($color: $primary-color, $size: 2.4rem) {
+    color: $color;
+    font-size: $size;
+}
+
+// Global Styles
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    background-color: #f8f9fa;
+}
+
+// Navbar Customization
+.navbar {
+    background-color: $secondary-color;
+    
+    .navbar-brand {
+        color: $primary-color;
+        font-weight: 600;
+    }
+
+    .nav-link {
+        color: $secondary-color;
+
+        &:hover {
+            color: $primary-color;
+            @include transition(color);
+        }
+
+        .custom-icon {
+            @include custom-icon($primary-color, 2rem);
+            margin-right: $spacing-unit / 2;
+        }
+    }
+}
+
+// Content
+.container {
+    h1 {
+        color: $primary-color;
+        font-size: $font-size-large;
+    }
+
+    p {
+        color: $secondary-color;
+        font-size: $font-size-small;
+    }
+}
